@@ -8,6 +8,10 @@ function Dashboard() {
     const [user, loading, error] = useAuthState(auth);
     const [name, setName] = useState("");
     const navigate = useNavigate();
+    /**
+     * FetchUserName() is an async function that fetches the user's name from the database and sets it
+     * to the state variable name.
+     */
     const fetchUserName = async () => {
         try {
             const q = query(
@@ -22,6 +26,7 @@ function Dashboard() {
             alert("An error occured while fetching user data");
         }
     };
+    /* A hook that runs when the component mounts and when the user or loading state changes. */
     useEffect(() => {
         if (loading) return;
         if (!user) return navigate("/");

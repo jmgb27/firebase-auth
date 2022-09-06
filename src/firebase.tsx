@@ -16,6 +16,7 @@ import {
     where,
     addDoc,
 } from "firebase/firestore";
+
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_APP_API_KEY,
     authDomain: import.meta.env.VITE_APP_AUTH_DOMAIN,
@@ -24,10 +25,12 @@ const firebaseConfig = {
     storageBucket: import.meta.env.VITE_APP_STORAGE_BUCKET,
     messagingSenderId: import.meta.env.VITE_APP_MESSAGING_SENDER_ID,
 };
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
+
 const signInWithGoogle = async (): Promise<void> => {
     try {
         const res = await signInWithPopup(auth, googleProvider);
@@ -47,6 +50,7 @@ const signInWithGoogle = async (): Promise<void> => {
         alert(err.message);
     }
 };
+
 const logInWithEmailAndPassword = async ({
     email,
     password,
@@ -61,6 +65,7 @@ const logInWithEmailAndPassword = async ({
         alert(err.message);
     }
 };
+
 const registerWithEmailAndPassword = async ({
     name,
     email,
@@ -84,6 +89,7 @@ const registerWithEmailAndPassword = async ({
         alert(err.message);
     }
 };
+
 const sendPasswordReset = async (email: string): Promise<void> => {
     try {
         await sendPasswordResetEmail(auth, email);
@@ -93,6 +99,7 @@ const sendPasswordReset = async (email: string): Promise<void> => {
         alert(err.message);
     }
 };
+
 const logout = () => {
     signOut(auth);
 };
